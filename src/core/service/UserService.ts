@@ -7,12 +7,15 @@ export class UserService{
 
     save(email:string) {
 
-        throw new Error('Not implemented yet')
+        if ( email != '' ) {
+            this.userRepository.save(email)
+        }
+
     }
 
     getUserList(){
         
-        throw new Error('Not implemented yet')
+        return this.userRepository.getUserList()
     }
 
 }

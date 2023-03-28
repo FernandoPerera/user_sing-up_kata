@@ -27,9 +27,11 @@ describe('Sign-up', () => {
 
         const spy = jest.spyOn(service, 'save')
         service.save(email)
+        const usersRecords = service.getUserList()
 
         expect(spy).toHaveBeenCalled()
-
+        expect(usersRecords.length).toBe(0)
+        
     })
 
 })
