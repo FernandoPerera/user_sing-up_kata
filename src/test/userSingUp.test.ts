@@ -47,4 +47,17 @@ describe('Sign-up', () => {
         
     })
 
+    it('add email into database if have a correct format', () => {
+
+        const email = 'example@gmail.com'
+
+        const spy = jest.spyOn(service, 'save')
+        service.save(email)
+        const usersRecords = service.getUserList()
+
+        expect(spy).toHaveBeenCalled()
+        expect(usersRecords.length).toBe(1)
+        
+    })
+
 })
