@@ -7,7 +7,9 @@ export class UserService{
 
     save(email:string) {
 
-        if ( email != '' ) {
+        const isEmail = email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)
+
+        if ( email != '' && isEmail ) {
             this.userRepository.save(email)
         }
 
