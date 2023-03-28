@@ -22,7 +22,6 @@ describe('Sign-up', () => {
 
         const database = new FakeDataBase()
         const service = new UserService(database)
-
         const email = ''
 
         const spy = jest.spyOn(service, 'save')
@@ -38,7 +37,6 @@ describe('Sign-up', () => {
 
         const database = new FakeDataBase()
         const service = new UserService(database)
-
         const email = 'example.com'
 
         const spy = jest.spyOn(service, 'save')
@@ -54,7 +52,6 @@ describe('Sign-up', () => {
 
         const database = new FakeDataBase()
         const service = new UserService(database)
-
         const email = 'example@gmail.com'
 
         const spy = jest.spyOn(service, 'save')
@@ -70,7 +67,6 @@ describe('Sign-up', () => {
 
         const database = new FakeDataBase()
         const service = new UserService(database)
-
         const email = 'existing_mail@gmail.com'
 
         const spy = jest.spyOn(service, 'save')
