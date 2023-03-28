@@ -7,9 +7,11 @@ export class UserService{
 
     save(email:string) {
 
-        const isEmail = email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)
+        const itsNotEmpty: boolean = email != ''
+        const emailDontExist: boolean = !this.isEmailDuplicated(email)
+        const isEmail: RegExpMatchArray = email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)
 
-        if ( email != '' && isEmail && !this.isEmailDuplicated(email)) {
+        if ( itsNotEmpty && isEmail && emailDontExist ) {
             this.userRepository.save(email)
         }
 
@@ -22,15 +24,15 @@ export class UserService{
 
     private isEmailDuplicated(email: string): boolean {
 
-        let exist: boolean = false
+        let existInDataBase: boolean = false
 
         this.getUserList().map( (userEmail) => {
              userEmail == email
-                ? exist = true
+                ? existInDataBase = true
                 : null
         })
 
-        return exist
+        return existInDataBase
 
     }
 
