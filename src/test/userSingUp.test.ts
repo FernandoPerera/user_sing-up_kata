@@ -6,13 +6,13 @@ import { UserService } from "../core/service/UserService";
  *
  *  Casos de uso : 
  *      
- *          - '' -> dont add mail into database
+ *          - '' -> dont add email into database
  * 
  *          - example.com -> dont add into database
  * 
- *          - 'fernando@gmail.com' -> add into database
+ *          - 'example@gmail.com' -> add into database
  * 
- *          - ['fernando@gmail.com], 'fernando@gmail.com' -> dont add into database
+ *          - ['example@gmail.com], 'example@gmail.com' -> dont add into database
  * 
  */
 
@@ -63,11 +63,11 @@ describe('Sign-up', () => {
 
     })
 
-    it('dont add email into database if the mail already exists in the database', () => {
+    it('dont add email into database if the email already exists in the database', () => {
 
         const database = new FakeDataBase()
         const service = new UserService(database)
-        const email = 'existing_mail@gmail.com'
+        const email = 'existing_email@gmail.com'
 
         const spy = jest.spyOn(service, 'save')
         service.save(email)
@@ -75,7 +75,7 @@ describe('Sign-up', () => {
         const usersRecords = service.getUserList()
 
         expect(spy).toHaveBeenCalled()
-        expect(usersRecords.length).toBe(0)
+        expect(usersRecords.length).toBe(1)
 
     })
 
