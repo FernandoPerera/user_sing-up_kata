@@ -1,5 +1,5 @@
 
-import { UserRepository } from '../repository/UserRepository';
+import { UserRepository } from '../repository/UserRepository'
 
 export class UserService{
 
@@ -24,15 +24,9 @@ export class UserService{
 
     private isEmailDuplicated(email: string): boolean {
 
-        let existInDataBase: boolean = false
-
-        this.getUserList().map( (userEmail) => {
-             userEmail == email
-                ? existInDataBase = true
-                : null
-        })
-
-        return existInDataBase
+        return (
+            this.getUserList().some( (currentEmail) => currentEmail === email )
+        )
 
     }
 

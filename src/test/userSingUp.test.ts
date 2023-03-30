@@ -1,5 +1,6 @@
 
 import { FakeDataBase } from "../core/controller/FakeUserController";
+import { UserRepository } from "../core/repository/UserRepository";
 import { UserService } from "../core/service/UserService";
 
 /*
@@ -18,13 +19,20 @@ import { UserService } from "../core/service/UserService";
 
 describe('Sign-up', () => {
 
+    let database: FakeDataBase
+    let service: UserService
+    let spy: jest.SpyInstance<void, [email: string], any>
+
+    beforeEach( () => {
+        database = new FakeDataBase()
+        service = new UserService(database)
+        spy = jest.spyOn(service, 'save')
+    })
+
     it('dont add a email into database if the email is empty', () => {
 
-        const database = new FakeDataBase()
-        const service = new UserService(database)
         const email = ''
 
-        const spy = jest.spyOn(service, 'save')
         service.save(email)
         const usersRecords = service.getUserList()
 
@@ -35,11 +43,8 @@ describe('Sign-up', () => {
 
     it('dont add a email into database if the email have a wrong format', () => {
 
-        const database = new FakeDataBase()
-        const service = new UserService(database)
         const email = 'example.com'
 
-        const spy = jest.spyOn(service, 'save')
         service.save(email)
         const usersRecords = service.getUserList()
 
@@ -50,11 +55,8 @@ describe('Sign-up', () => {
 
     it('add email into database if have a correct format', () => {
 
-        const database = new FakeDataBase()
-        const service = new UserService(database)
         const email = 'example@gmail.com'
 
-        const spy = jest.spyOn(service, 'save')
         service.save(email)
         const usersRecords = service.getUserList()
 
@@ -65,11 +67,8 @@ describe('Sign-up', () => {
 
     it('dont add email into database if the email already exists in the database', () => {
 
-        const database = new FakeDataBase()
-        const service = new UserService(database)
         const email = 'existing_email@gmail.com'
 
-        const spy = jest.spyOn(service, 'save')
         service.save(email)
         service.save(email)
         const usersRecords = service.getUserList()
