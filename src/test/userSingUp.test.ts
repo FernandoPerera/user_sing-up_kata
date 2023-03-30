@@ -1,7 +1,6 @@
 
-import { FakeDataBase } from "../core/controller/FakeUserController";
-import { UserRepository } from "../core/repository/UserRepository";
-import { UserService } from "../core/service/UserService";
+import { FakeDataBase } from "../core/controller/FakeUserController"
+import { UserService } from "../core/service/UserService"
 
 /*
  *
@@ -73,6 +72,17 @@ describe('Sign-up', () => {
         const usersRecords = service.getUserList()
 
         expect(usersRecords.length).toBe(1)
+
+    })
+
+    it('get a email if exist in database with jest.fn', () => {
+
+        const email = 'example@gmail.com'
+
+        service.getUserByEmail = jest.fn().mockReturnValue(email)
+        const userByEmail = service.getUserByEmail(email)
+
+        expect(email).toBe(userByEmail)
 
     })
 

@@ -3,7 +3,7 @@ import {UserRepository} from '../repository/UserRepository'
 
 export class FakeDataBase implements UserRepository {
 
-    private users = []
+    private users: Array<string> = []
 
     save(email: string) { 
         this.users.push(email)
@@ -12,5 +12,7 @@ export class FakeDataBase implements UserRepository {
     getUserList(){
         return this.users
     }
+
+
     
 }
