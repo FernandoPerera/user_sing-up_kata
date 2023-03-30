@@ -17,6 +17,11 @@ export class UserService{
 
     }
 
+    getUserByEmail(email: string) {
+
+        return email
+    }
+
     getUserList(){
         
         return this.userRepository.getUserList()

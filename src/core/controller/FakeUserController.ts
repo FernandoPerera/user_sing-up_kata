@@ -13,6 +13,8 @@ export class FakeDataBase implements UserRepository {
         return this.users
     }
 
-
+    getUserByEmail(email: string): string {
+        return email
+    }
     
 }

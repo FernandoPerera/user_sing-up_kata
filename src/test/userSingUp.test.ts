@@ -71,6 +71,7 @@ describe('Sign-up', () => {
         service.getUserList = jest.fn().mockReturnValue([email])
         const usersRecords = service.getUserList()
 
+        jest.spyOn(service, 'save')
         expect(usersRecords.length).toBe(1)
 
     })
@@ -82,6 +83,7 @@ describe('Sign-up', () => {
         service.getUserByEmail = jest.fn().mockReturnValue(email)
         const userByEmail = service.getUserByEmail(email)
 
+        jest.spyOn(service, 'getUserByEmail')
         expect(email).toBe(userByEmail)
 
     })

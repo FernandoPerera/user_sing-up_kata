@@ -5,4 +5,6 @@ export interface UserRepository {
 
     getUserList(): string[]
 
+    getUserByEmail(email: string): string
+
 }
