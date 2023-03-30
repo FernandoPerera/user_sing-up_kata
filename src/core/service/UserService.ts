@@ -22,7 +22,7 @@ export class UserService{
         return this.userRepository.getUserList()
     }
 
-    private isEmailDuplicated(email: string): boolean {
+    isEmailDuplicated(email: string): boolean {
 
         return (
             this.getUserList().some( (currentEmail) => currentEmail === email )

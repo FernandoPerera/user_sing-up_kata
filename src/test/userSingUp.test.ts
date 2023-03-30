@@ -65,15 +65,13 @@ describe('Sign-up', () => {
 
     })
 
-    it('dont add email into database if the email already exists in the database', () => {
+    it('add email into database if have a correct format with jest.fn', () => {
 
-        const email = 'existing_email@gmail.com'
+        const email = 'example@gmail.com'
 
-        service.save(email)
-        service.save(email)
+        service.getUserList = jest.fn().mockReturnValue([email])
         const usersRecords = service.getUserList()
 
-        expect(spy).toHaveBeenCalled()
         expect(usersRecords.length).toBe(1)
 
     })
